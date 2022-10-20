@@ -1,0 +1,2 @@
+version=3
+https://erratique.ch/software/topkg/releases/ .*topkg-(.+)\.tbz

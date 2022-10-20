@@ -1,0 +1,20 @@
+ocaml-topkg (1.0.3-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Stéphane Glondu <glondu@debian.org>  Sun, 08 Nov 2020 04:36:13 +0100
+
+ocaml-topkg (1.0.2-1) unstable; urgency=medium
+
+  * New upstream release
+  * Bump debhelper compat level to 13
+  * Bump Standards-Version to 4.5.0
+  * Add Rules-Requires-Root: no
+
+ -- Stéphane Glondu <glondu@debian.org>  Wed, 05 Aug 2020 13:12:31 +0200
+
+ocaml-topkg (1.0.1-1) unstable; urgency=medium
+
+  * Initial release (Closes: #869114)
+
+ -- Stéphane Glondu <glondu@debian.org>  Sat, 17 Aug 2019 10:32:13 +0200

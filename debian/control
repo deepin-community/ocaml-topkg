@@ -1,0 +1,34 @@
+Source: ocaml-topkg
+Section: ocaml
+Priority: optional
+Maintainer: Debian OCaml Maintainers <debian-ocaml-maint@lists.debian.org>
+Uploaders:
+ Stéphane Glondu <glondu@debian.org>
+Build-Depends:
+ debhelper-compat (= 13),
+ dh-ocaml,
+ ocaml-nox,
+ ocamlbuild,
+ ocaml-findlib,
+ libfindlib-ocaml-dev,
+ opam-installer
+Standards-Version: 4.5.0
+Rules-Requires-Root: no
+Homepage: https://erratique.ch/software/topkg
+Vcs-Git: https://salsa.debian.org/ocaml-team/ocaml-topkg.git
+Vcs-Browser: https://salsa.debian.org/ocaml-team/ocaml-topkg
+
+Package: libtopkg-ocaml-dev
+Architecture: any
+Depends:
+ libfindlib-ocaml-dev,
+ ${ocaml:Depends},
+ ${shlibs:Depends},
+ ${misc:Depends}
+Recommends:
+ ocaml-findlib
+Description: packager for OCaml software
+ Topkg provides an API to describe the files a package installs in a
+ given build configuration and to specify information about the
+ package's distribution creation and publication procedures. Many
+ OCaml packages depend on topkg for building and packaging.

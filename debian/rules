@@ -1,0 +1,16 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+include /usr/share/ocaml/ocamlvars.mk
+
+DESTDIR=$(CURDIR)/debian/tmp
+
+%:
+	dh $@ --with ocaml
+
+override_dh_auto_build:
+	./pkg/pkg.ml build --pkg-name topkg
+
+override_dh_auto_install:
+	opam-installer --prefix=$(DESTDIR)/usr --libdir=..$(OCAML_STDLIB_DIR)
+	rm -f $(DESTDIR)/usr/doc/topkg/LICENSE.md
