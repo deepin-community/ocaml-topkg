@@ -1,7 +1,7 @@
 (*---------------------------------------------------------------------------
    Copyright (c) 2016 Daniel C. Bünzli. All rights reserved.
    Distributed under the ISC license, see terms at the end of the file.
-   topkg v1.0.3
+   topkg v1.0.7
   ---------------------------------------------------------------------------*)
 
 open Bos_setup
@@ -21,7 +21,7 @@ let opam_repo_field =
   "repo", `Opam "dev-repo", "dev-repo opam file field"
 
 let topkg_api =
-  "topkg-api", `Uri "http://erratique.ch/software/topkg/doc", "topkg's API docs"
+  "topkg-api", `Uri "https://erratique.ch/software/topkg/doc", "topkg's API docs"
 
 let ocaml_man =
   "ocaml-man", `Uri "http://caml.inria.fr/pub/docs/manual-ocaml/",
@@ -85,7 +85,7 @@ let browse () pkg_file opam browser prefix background target =
         Topkg_care.Pkg.opam pkg >>= fun opam -> opam_field_uri opam field
     | `Error msg ->
         let uri_prefixes = ["http://"; "https://"; "file://"] in
-        if List.exists (fun p -> String.is_prefix p target) uri_prefixes
+        if List.exists (fun p -> String.is_prefix ~affix:p target) uri_prefixes
         then Ok target
         else Error (`Msg msg)
     in

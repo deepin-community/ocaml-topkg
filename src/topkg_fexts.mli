@@ -1,7 +1,7 @@
 (*---------------------------------------------------------------------------
    Copyright (c) 2016 Daniel C. Bünzli. All rights reserved.
    Distributed under the ISC license, see terms at the end of the file.
-   topkg v1.0.3
+   topkg v1.0.7
   ---------------------------------------------------------------------------*)
 
 (** File extensions.
@@ -10,13 +10,14 @@
 
 (** {1 File extensions} *)
 
-type ext = [`Ext of string | `Obj | `Lib | `Dll | `Exe]
+type ext = [`Ext of string | `Obj | `Real_clib | `Lib | `Dll | `Exe]
 
 type t = ext list
 
 val interface : ext list
 val api : ext list
 val cmx : ext list
+val real_c_library : ext list
 val c_library : ext list
 val c_dll_library : ext list
 val library : ext list

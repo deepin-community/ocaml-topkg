@@ -1,7 +1,7 @@
 (*---------------------------------------------------------------------------
    Copyright (c) 2016 Daniel C. Bünzli. All rights reserved.
    Distributed under the ISC license, see terms at the end of the file.
-   topkg v1.0.3
+   topkg v1.0.7
   ---------------------------------------------------------------------------*)
 
 open Topkg_result
@@ -49,7 +49,7 @@ module Dir = struct
       | [] -> List.rev acc
       | f :: fs ->
           let acc =
-            if not dotfiles && Topkg_string.is_prefix "." f then acc else
+            if not dotfiles && Topkg_string.is_prefix ~affix:"." f then acc else
             if rel then f :: acc else Topkg_fpath.append p f :: acc
           in
           loop acc fs

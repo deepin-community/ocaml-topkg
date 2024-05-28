@@ -1,7 +1,7 @@
 (*---------------------------------------------------------------------------
    Copyright (c) 2016 Daniel C. Bünzli. All rights reserved.
    Distributed under the ISC license, see terms at the end of the file.
-   topkg v1.0.3
+   topkg v1.0.7
   ---------------------------------------------------------------------------*)
 
 let strf = Format.asprintf
@@ -89,20 +89,33 @@ let cuts ?(empty = true) ~sep s =
 (* Version strings *)
 
 let parse_version v =
-  let version = if is_prefix "v" v then with_index_range ~first:1 v else v in
+  let version =
+    if is_prefix ~affix:"v" v then with_index_range ~first:1 v else v
+  in
+  let cut_left_plus_or_tilde s =
+    let cut = match String.index_opt s '+', String.index_opt s '~' with
+    | None, None -> None
+    | (Some _ as i), None | None, (Some _ as i) -> i
+    | Some i, Some i' -> Some (if i < i' then i else i')
+    in
+    match cut with
+    | None -> None
+    | Some i ->
+        Some (with_index_range ~last:(i - 1) s, with_index_range ~first:i s)
+  in
   try match cut ~sep:'.' version with
   | None -> None
   | Some (maj, rest) ->
       let maj = int_of_string maj in
       match cut ~sep:'.' rest with
       | None ->
-          begin match cut ~sep:'+' rest with
+          begin match cut_left_plus_or_tilde rest with
           | None -> Some (maj, int_of_string rest, 0, None)
           | Some (min, i) ->  Some (maj, int_of_string min, 0, Some i)
           end
       | Some (min, rest) ->
           let min = int_of_string min in
-          begin match cut ~sep:'+' rest with
+          begin match cut_left_plus_or_tilde rest with
           | None -> Some (maj, min, int_of_string rest, None)
           | Some (p, i) -> Some (maj, min, int_of_string p, Some i)
           end

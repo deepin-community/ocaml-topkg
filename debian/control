@@ -7,12 +7,12 @@ Uploaders:
 Build-Depends:
  debhelper-compat (= 13),
  dh-ocaml,
- ocaml-nox,
+ ocaml,
  ocamlbuild,
  ocaml-findlib,
  libfindlib-ocaml-dev,
  opam-installer
-Standards-Version: 4.5.0
+Standards-Version: 4.6.0
 Rules-Requires-Root: no
 Homepage: https://erratique.ch/software/topkg
 Vcs-Git: https://salsa.debian.org/ocaml-team/ocaml-topkg.git

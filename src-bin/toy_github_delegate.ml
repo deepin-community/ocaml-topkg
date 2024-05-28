@@ -1,7 +1,7 @@
 (*---------------------------------------------------------------------------
    Copyright (c) 2016 Daniel C. Bünzli. All rights reserved.
    Distributed under the ISC license, see terms at the end of the file.
-   topkg v1.0.3
+   topkg v1.0.7
   ---------------------------------------------------------------------------*)
 
 open Bos_setup
@@ -97,7 +97,7 @@ let steal_opam_publish_github_auth () =
   OS.Cmd.exists opam >>= function
   | false -> Ok None
   | true ->
-      OS.Cmd.(run_out Cmd.(opam % "config" % "var" % "root") |> to_string)
+      OS.Cmd.(run_out Cmd.(opam % "var" % "root") |> to_string)
       >>= fun root -> Fpath.of_string root
       >>= fun root -> OS.Path.query Fpath.(root // publish / "$(user).token")
       >>= function
@@ -312,7 +312,7 @@ let main_cmd =
           documentation for more details); in this case your GitHub
           password will be prompted twice on the command line by curl (ugh).")]
   in
-  let version = "v1.0.3" in
+  let version = "v1.0.7" in
   Term.(ret (const main_cmd $ const ())),
   Term.info "toy-github-topkg-delegate" ~version ~doc ~envs ~man ~man_xrefs
 

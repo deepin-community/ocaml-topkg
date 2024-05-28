@@ -1,7 +1,7 @@
 (*---------------------------------------------------------------------------
    Copyright (c) 2016 Daniel C. Bünzli. All rights reserved.
    Distributed under the ISC license, see terms at the end of the file.
-   topkg v1.0.3
+   topkg v1.0.7
   ---------------------------------------------------------------------------*)
 
 open Topkg_result
@@ -73,7 +73,7 @@ let help_cmd pkg =
   pr "%a@." pp_help ();
   Ok 0
 
-let version_cmd pkg = print_endline "topkg v1.0.3"; Ok 0
+let version_cmd pkg = print_endline "topkg v1.0.7"; Ok 0
 
 let build_cmd pkg kind args =
   let log_conf c =
@@ -92,7 +92,7 @@ let build_cmd pkg kind args =
 
 let test_cmd pkg name build_dir list tests args =
   let pkg = Topkg_pkg.with_name_and_build_dir ?name ?build_dir pkg in
-  Topkg_pkg.test pkg list tests args
+  Topkg_pkg.test pkg ~list ~tests ~args
 
 let clean_cmd pkg name build_dir =
   let pkg = Topkg_pkg.with_name_and_build_dir ?name ?build_dir pkg in
@@ -118,7 +118,7 @@ let incr_verb = function
 | Some Topkg_log.Info -> Some Topkg_log.Debug
 | v -> v
 
-let is_opt s = Topkg_string.(is_prefix "-" s || is_prefix "--" s)
+let is_opt s = Topkg_string.(is_prefix ~affix:"-" s || is_prefix ~affix:"--" s)
 
 let parse_cli_help_version_verbosity args =
   let is_help = function "-h" | "--help" | "-help" -> true | _ -> false in
@@ -239,7 +239,7 @@ let check_log ret =
 
 let setup_log_level level =
   Topkg_log.set_level level;
-  Topkg_log.info (fun m -> m "topkg v1.0.3, running main");
+  Topkg_log.info (fun m -> m "topkg v1.0.7, running main");
   Ok ()
 
 let main pkg =
