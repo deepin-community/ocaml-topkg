@@ -1,3 +1,30 @@
+v1.0.7 2022-01-20 La Forclaz (VS)
+---------------------------------
+
+- Fix install of C stubs in byte code only installations.
+  Thanks to @kit-ty-kate for the investigation (#140).
+
+v1.0.6 2022-11-04 Zagreb
+------------------------
+
+- Fix native dynlink detection on OCaml 5.0 and thus `cmxs` file
+  installation. Thanks to @kit-ty-kate for the report and the patch.
+
+v1.0.5 2022-01-28 La Forclaz (VS)
+---------------------------------
+
+- `Topkg.String.parse_version`. Support for the new OCaml 
+  version string format (https://github.com/ocaml/ocaml/pull/9712)
+- Switch from `opam config var` to `opam var`.
+- Fix compilation for next version of `cmdliner`. 
+
+v1.0.4 2021-10-04 Zagreb
+-------------------------
+
+- Remove mentions of `Result.result` in the code base. We got the
+  dependency indirectly through `bos` and the latest version of the
+  latter no longer depends on it.
+
 v1.0.3 2020-09-19 Zagreb
 ------------------------
 

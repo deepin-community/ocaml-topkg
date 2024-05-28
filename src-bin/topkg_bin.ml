@@ -1,7 +1,7 @@
 (*---------------------------------------------------------------------------
    Copyright (c) 2016 Daniel C. Bünzli. All rights reserved.
    Distributed under the ISC license, see terms at the end of the file.
-   topkg v1.0.3
+   topkg v1.0.7
   ---------------------------------------------------------------------------*)
 
 open Cmdliner
@@ -29,13 +29,13 @@ let man =
     `Noblank;
     `P "Use '$(mname) help $(i,COMMAND)' for help about $(i,COMMAND).";
     `S Manpage.s_bugs;
-    `P "Report them, see $(i,http://erratique.ch/software/topkg) for contact information.";
+    `P "Report them, see $(i,https://erratique.ch/software/topkg) for contact information.";
     `S Manpage.s_authors;
     `P "Daniel C. Buenzli, $(i,http://erratique.ch)"; ]
 
 let main =
   Term.(ret (const main $ Cli.setup)),
-  Term.info "topkg" ~version:"v1.0.3" ~doc ~sdocs ~exits ~man
+  Term.info "topkg" ~version:"v1.0.7" ~doc ~sdocs ~exits ~man
 
 let main () =
   Topkg.Private.disable_main ();

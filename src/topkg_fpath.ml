@@ -1,17 +1,17 @@
 (*---------------------------------------------------------------------------
    Copyright (c) 2016 Daniel C. Bünzli. All rights reserved.
    Distributed under the ISC license, see terms at the end of the file.
-   topkg v1.0.3
+   topkg v1.0.7
   ---------------------------------------------------------------------------*)
 
 type t = string
 
 let dir_sep_prefix s =
-  Topkg_string.is_prefix Filename.dir_sep s ||
+  Topkg_string.is_prefix ~affix:Filename.dir_sep s ||
   (String.length s > 0 && s.[0] = '/')
 
 let dir_sep_suffix s =
-  Topkg_string.is_suffix Filename.dir_sep s ||
+  Topkg_string.is_suffix ~affix:Filename.dir_sep s ||
   (String.length s > 0 && s.[String.length s - 1] = '/')
 
 let append =

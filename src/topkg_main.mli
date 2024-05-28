@@ -1,7 +1,7 @@
 (*---------------------------------------------------------------------------
    Copyright (c) 2016 Daniel C. Bünzli. All rights reserved.
    Distributed under the ISC license, see terms at the end of the file.
-   topkg v1.0.3
+   topkg v1.0.7
   ---------------------------------------------------------------------------*)
 
 (** Entry point for [pkg.ml] files. *)

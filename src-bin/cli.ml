@@ -1,7 +1,7 @@
 (*---------------------------------------------------------------------------
    Copyright (c) 2016 Daniel C. Bünzli. All rights reserved.
    Distributed under the ISC license, see terms at the end of the file.
-   topkg v1.0.3
+   topkg v1.0.7
   ---------------------------------------------------------------------------*)
 
 open Bos_setup
@@ -89,7 +89,7 @@ let delegate =
              for the lookup procedure."
   in
   let docv = "TOOL" in
-  let to_cmd = function None -> None | Some s -> Some (Cmd.v s) in
+  let to_cmd = function None -> None | Some s -> Some (Bos.Cmd.v s) in
   Term.(const to_cmd $
         Arg.(value & opt (some string) None & info ["delegate"] ~doc ~docv))
 
@@ -122,7 +122,7 @@ let setup style_renderer log_level cwd =
   Topkg.Log.set_level (logs_to_topkg_log_level log_level);
   Logs.set_level log_level;
   Logs.set_reporter (Logs_fmt.reporter ~app:Fmt.stdout ());
-  Logs.info (fun m -> m "topkg v1.0.3 running");
+  Logs.info (fun m -> m "topkg v1.0.7 running");
   match cwd with
   | None -> `Ok ()
   | Some dir ->
@@ -150,10 +150,10 @@ let setup =
 (* Verbosity propagation. *)
 
 let propagate_verbosity_to_pkg_file () = match Logs.level () with
-| None -> Cmd.(v "-q")
-| Some Logs.Info -> Cmd.(v "-v")
-| Some Logs.Debug -> Cmd.(v "-v" % "-v")
-| Some _ -> Cmd.empty
+| None -> Bos.Cmd.(v "-q")
+| Some Logs.Info -> Bos.Cmd.(v "-v")
+| Some Logs.Debug -> Bos.Cmd.(v "-v" % "-v")
+| Some _ -> Bos.Cmd.empty
 
 (* Error handling *)
 

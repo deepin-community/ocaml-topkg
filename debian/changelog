@@ -1,3 +1,23 @@
+ocaml-topkg (1.0.7-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Stéphane Glondu <glondu@debian.org>  Sat, 21 Jan 2023 09:42:37 +0100
+
+ocaml-topkg (1.0.5-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Stéphane Glondu <glondu@debian.org>  Mon, 21 Feb 2022 05:18:34 +0100
+
+ocaml-topkg (1.0.4-1) unstable; urgency=medium
+
+  * New upstream release
+  * Bump Standards-Version to 4.6.0
+  * Bump debian/watch format version to 4
+
+ -- Stéphane Glondu <glondu@debian.org>  Fri, 19 Nov 2021 08:41:57 +0100
+
 ocaml-topkg (1.0.3-1) unstable; urgency=medium
 
   * New upstream release

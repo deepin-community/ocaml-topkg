@@ -1,7 +1,7 @@
 (*---------------------------------------------------------------------------
    Copyright (c) 2016 Daniel C. Bünzli. All rights reserved.
    Distributed under the ISC license, see terms at the end of the file.
-   topkg v1.0.3
+   topkg v1.0.7
   ---------------------------------------------------------------------------*)
 
 open Bos_setup
@@ -119,7 +119,7 @@ end
 module Descr = struct
   type t = string * string
 
-  let of_string s = match String.cuts "\n" s with
+  let of_string s = match String.cuts ~sep:"\n" s with
   | [] ->  R.error_msgf "Cannot extract opam descr."
   | synopsis :: descr -> Ok (synopsis, String.concat ~sep:"\n" descr)
 
@@ -148,10 +148,10 @@ module Descr = struct
           | Some _ -> ok start
     in
     let drop_line l =
-      String.is_prefix "Home page:" l ||
-      String.is_prefix "Homepage:" l ||
-      String.is_prefix "Contact:" l ||
-      String.is_prefix "%%VERSION" l
+      String.is_prefix ~affix:"Home page:" l ||
+      String.is_prefix ~affix:"Homepage:" l ||
+      String.is_prefix ~affix:"Contact:" l ||
+      String.is_prefix ~affix:"%%VERSION" l
     in
     let keep_line l = not (drop_line l) in
     match Topkg_care_text.head ?flavour r with

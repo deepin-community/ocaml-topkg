@@ -1,7 +1,7 @@
 (*---------------------------------------------------------------------------
    Copyright (c) 2016 Daniel C. Bünzli. All rights reserved.
    Distributed under the ISC license, see terms at the end of the file.
-   topkg v1.0.3
+   topkg v1.0.7
   ---------------------------------------------------------------------------*)
 
 open Bos_setup
@@ -34,7 +34,7 @@ let copy_odig_css doc_dir dst_dir =
   OS.File.exists Fpath.(doc_dir / "style.css") >>= function
   | true -> Ok ()
   | false ->
-      let get_odig_etc = Cmd.(v "opam" % "config" % "var" % "odig:etc") in
+      let get_odig_etc = Cmd.(v "opam" % "var" % "odig:etc") in
       OS.Cmd.(run_out get_odig_etc |> to_string) >>= function
       | "#undefined" (* no comment *) -> Ok ()
       | etcdir ->
